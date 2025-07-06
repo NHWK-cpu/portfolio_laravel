@@ -30,9 +30,9 @@ class LoginController extends Controller
             $_SESSION['verif'] = 'logedin';
             return redirect('/upload');
         } else {
-            return redirect('/login')->withErrors([
-                'password' => 'Password salah!',
-            ]);
+            return redirect('/login')->with(
+                'error', 'Password salah!',
+            );
         }
     }
 }

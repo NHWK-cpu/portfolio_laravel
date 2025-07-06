@@ -23,6 +23,10 @@
         placeholder="Password"
         class="p-2 w-[55%] rounded-sm focus:outline-0 shadow-[inset_2px_2px_5px_#bebebe,_inset_-2px_-2px_5px_#fff] text-center text-gray-500"
         required>
+      
+      @if (session('error'))
+        <p class="text-red-400 mt-2">{{ session('error') }}</p>
+      @endif
 
       <button type="submit"
         class="mt-10 px-8 py-2 shadow-[3px_3px_5px_#a8a8a8,_-3px_-3px_5px_#fff] hover:cursor-pointer hover:shadow-[1px_1px_3px_#a8a8a8,_-2px_-2px_3px_#fff] active:shadow-[inset_3px_3px_5px_#a8a8a8,_inset_-3px_-3px_5px_#fff] text-gray-700 rounded-2xl font-semibold transition-all">CONFIRM</button>
