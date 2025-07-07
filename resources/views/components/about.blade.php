@@ -1,4 +1,4 @@
-<main class="h-screen w-screen snap-center snap-always">
+<main class="h-screen w-screen snap-start">
   <div
     class="bg-gray-200 h-screen w-screen flex flex-row max-lg:flex-col items-center justify-center relative overflow-hidden">
     <div
@@ -20,6 +20,6 @@
     </div>
     <div class="[invisible] w-xl max-lg:hidden"></div>
     <img src="{{ asset('images/profile.png') }}"
-      class="w-4xl h-250 object-top object-cover max-lg:hidden absolute right-[-15rem] bottom-0">
+      class="w-4xl h-250 object-top object-cover max-lg:hidden absolute right-[-15rem] bottom-0 transition-all delay-300 duration-1000 box-up opacity-0 translate-y-8">
   </div>
 </main>

@@ -1,6 +1,6 @@
 <div
-  class="h-screen w-screen snap-center snap-always relative flex flex-col items-center justify-center bg-gray-200" id="project">
-  <h1 class="text-5xl max-lg:text-4xl font-bold mb-10">My Project</h1>
+  class="h-screen w-screen snap-start relative flex flex-col items-center justify-center bg-gray-200" id="project">
+  <h1 class="text-5xl max-lg:text-4xl font-bold mb-10 transition-all delay-300 duration-1000 box-down opacity-0 -translate-y-8">My Project</h1>
 
   {{-- CONTAINER --}}
   <div
@@ -9,7 +9,7 @@
     {{-- ITEM --}}
     @foreach (App\Models\Project::all() as $project)
       <div
-        class="flex flex-col justify-center items-center shadow-[8px_8px_20px_#bebebe,_-8px_-8px_20px_#fff] bg-gray-100 w-md h-fit rounded-lg overflow-hidden">
+        class="flex flex-col justify-center items-center shadow-[8px_8px_20px_#bebebe,_-8px_-8px_20px_#fff] bg-gray-100 w-md h-fit rounded-lg overflow-hidden transition-all delay-300 duration-500 box-up opacity-0 translate-y-8">
         <img src="{{ asset('storage/' . $project['image']) }}" alt=""
           class="aspect-video w-md rounded-b-2xl">
         <div class="p-4 w-full">

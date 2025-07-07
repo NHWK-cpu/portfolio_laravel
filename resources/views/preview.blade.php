@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Portfolio</title>
   @vite(['resources/css/app.css'])
+  @vite(['resources/js/scroll.js'])
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
   </style>
@@ -20,21 +21,21 @@
     class="min-w-full h-screen overflow-y-scroll scroll-smooth snap-mandatory snap-y font-display">
     
     {{-- ABOUT --}}
-    <x-about class="snap-center snap-always" id="about">
-      <a href="{{ url('/#tools') }}"
-          class="px-5 py-1 outline-2 outline-amber-800 text-amber-800 hover:shadow-[3px_3px_5px_#a8a8a8,_-3px_-3px_5px_#fff] active:shadow-[inset_1px_1px_3px_#a8a8a8,_inset_-2px_-2px_3px_#fff] transition-all max-lg:transition-none">TOOLS</a>
+    <x-about class="snap-start" id="about">
+      <a href="{{ url('/#tools') }}" 
+          class="px-5 py-1 outline-2 outline-amber-800 text-amber-800 hover:shadow-[3px_3px_5px_#a8a8a8,_-3px_-3px_5px_#fff] active:shadow-[inset_1px_1px_3px_#a8a8a8,_inset_-2px_-2px_3px_#fff] transition-all delay-300 duration-500 box-right opacity-0 -translate-x-8">TOOLS</a>
         <a href="{{ url('/#project') }}"
-          class="px-5 py-1 outline-2 outline-amber-800 bg-amber-800 text-gray-100 hover:shadow-[5px_5px_5px_#a8a8a8,_-3px_-3px_5px_#fff] active:shadow transition-all max-lg:transition-none">PROJECT</a>
+          class="px-5 py-1 outline-2 outline-amber-800 bg-amber-800 text-gray-100 hover:shadow-[5px_5px_5px_#a8a8a8,_-3px_-3px_5px_#fff] active:shadow transition-all delay-300 box-right duration-500 box opacity-0 -translate-x-8">PROJECT</a>
     </x-about>
     
     {{-- TOOLS --}}
-    <x-tools class="snap-center snap-always"></x-tools>
+    <x-tools class="snap-start"></x-tools>
 
     {{-- PROJECT --}}
-    <x-project class="snap-center snap-always"></x-project>
+    <x-project class="snap-start"></x-project>
     
     {{-- FOOTER --}}
-    <x-footer class="snap-start snap-always"></x-footer>
+    <x-footer class="snap-start"></x-footer>
   </section>
 
   @if (session('verif') != null)
