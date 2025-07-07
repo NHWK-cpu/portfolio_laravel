@@ -7,23 +7,25 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function form() {
+    public function form()
+    {
         session_start();
         if (isset($_SESSION['verif'])) {
-            return($_SESSION['verif'] === 'logedin'? view('projectmanage') : redirect('/login'));
+            return $_SESSION['verif'] === 'logedin' ? view('projectmanage') : redirect('/login');
         }
         return redirect('/login');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
             'name' => 'required|max:100',
-            'desc' => 'required|max:255'
+            'desc' => 'required|max:255',
         ]);
 
         $image = $request->file('image');
-        $path = $image->store('images', 'public');
+        $path = $image->store('images/project', 'public');
 
         Project::create([
             'name' => $request->input('name'),
@@ -36,45 +38,51 @@ class ProjectController extends Controller
         return back()->with('success', 'Data berhasil diupload');
     }
 
-    public function destroy($id) {
-
+    public function destroy($id)
+    {
         session_start();
-        if ((!isset($_SESSION['verif']) || $_SESSION['verif'] !== 'logedin')) {
+        if (!isset($_SESSION['verif']) || $_SESSION['verif'] !== 'logedin') {
             return redirect('/login');
         }
 
-        $proj = Project::find((int)$id);
+        $proj = Project::find((int) $id);
 
-        if(!$proj) return back();
+        if (!$proj) {
+            return back();
+        }
 
-        unlink(public_path('storage/'. $proj->image));
+        unlink(public_path('storage/' . $proj->image));
         Project::destroy($id);
-        return back()->with('success','Data berhasil dihapus');
-
+        return back()->with('success', 'Data berhasil dihapus');
     }
 
-    public function showedit($id) {
+    public function showedit($id)
+    {
         session_start();
-        if ((!isset($_SESSION['verif']) || $_SESSION['verif'] !== 'logedin')) {
+        if (!isset($_SESSION['verif']) || $_SESSION['verif'] !== 'logedin') {
             return redirect('/login');
         }
 
-        if(!Project::find((int)$id)) return back();
-
-        return view('projectedit',Project::find((int)$id));
-    }
-
-    public function updateimage($req, $proj) {
-            $path = $req->file('image')->store('images', 'public');
-            if ($path != null) {
-                unlink(public_path('storage/'. $proj->image));
-                return $path;
-            } else {
-                return $proj->image;
-            }
+        if (!Project::find((int) $id)) {
+            return back();
         }
 
-    public function edit(Request $request) {
+        return view('projectedit', Project::find((int) $id));
+    }
+
+    public function updateimage($req, $proj)
+    {
+        $path = $req->file('image')->store('images/project', 'public');
+        if ($path != null) {
+            unlink(public_path('storage/' . $proj->image));
+            return $path;
+        } else {
+            return $proj->image;
+        }
+    }
+
+    public function edit(Request $request)
+    {
         $project = Project::find($request->input('id'));
         $project->name = $request->input('name') ?? $project->name;
         $project->image = static::updateimage($request, $project);
@@ -85,5 +93,4 @@ class ProjectController extends Controller
 
         return redirect('/project')->with('success', 'Data berhasil diubah');
     }
-
 }
